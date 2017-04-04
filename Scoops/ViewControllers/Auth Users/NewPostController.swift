@@ -11,10 +11,7 @@ import Firebase
 
 class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var titlePostTxt: UITextField!
-    @IBOutlet weak var textPostTxt: UITextField!
-    @IBOutlet weak var imagePost: UIImageView!
-    
+    //MARK: - Properties
     var isReadyToPublish: Bool = false
     var imageCaptured: UIImage! {
         didSet {
@@ -22,6 +19,12 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         }
     }
     
+    //MARK: - Outlets
+    @IBOutlet weak var titlePostTxt: UITextField!
+    @IBOutlet weak var textPostTxt: UITextField!
+    @IBOutlet weak var imagePost: UIImageView!
+    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,27 +39,30 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Actions
     @IBAction func takePhoto(_ sender: Any) {
+        // Se indica analítica de acción
+        FIRAnalytics.logEvent(withName: "takePhoto", parameters: ["camera" : "newPosts" as NSObject])
+        
         self.present(pushAlertCameraLibrary(), animated: true, completion: nil)
     }
+    
     @IBAction func publishAction(_ sender: Any) {
+        // Se indica analítica de acción
+        FIRAnalytics.logEvent(withName: "publishAction", parameters: ["posts" : "newPosts" as NSObject])
+        
         isReadyToPublish = (sender as! UISwitch).isOn
     }
 
     @IBAction func savePostInCloud(_ sender: Any) {
+        // Se indica analítica de acción
+        FIRAnalytics.logEvent(withName: "savePostInCloud", parameters: ["posts" : "newPosts" as NSObject])
+        
         // preparado para implementar codigo que persita en el cloud 
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: - funciones para la camara
+    //MARK: - === Functions ===
+    //MARK: Functions for Camera
     internal func pushAlertCameraLibrary() -> UIAlertController {
         let actionSheet = UIAlertController(title: NSLocalizedString("Selecciona la fuente de la imagen", comment: ""), message: NSLocalizedString("", comment: ""), preferredStyle: .actionSheet)
         
@@ -96,10 +102,19 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         self.present(picker, animated: true, completion: nil)
     }
-
+    
+    /*
+    // MARK: - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 }
 
-// MARK: - Delegado del imagepicker
+//# MARK: - === Extensions ===
+//# MARK: Delegado del imagepicker
 extension NewPostController {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imageCaptured = (info[UIImagePickerControllerOriginalImage] as? UIImage)!

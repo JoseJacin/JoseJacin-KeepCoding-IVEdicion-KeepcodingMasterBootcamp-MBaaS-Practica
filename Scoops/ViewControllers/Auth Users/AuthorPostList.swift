@@ -11,10 +11,12 @@ import Firebase
 
 class AuthorPostList: UITableViewController {
 
+    //MARK: - Properties
     let cellIdentifier = "POSTAUTOR"
     
     var model = ["test1", "test2"]
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,18 +31,21 @@ class AuthorPostList: UITableViewController {
         // Se indica analítica de Pantalla
         FIRAnalytics.setScreenName("AuthorPostList", screenClass: "AuthUsers")
     }
-    
-    func hadleRefresh(_ refreshControl: UIRefreshControl) {
-        refreshControl.endRefreshing()
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: - Funcions
+    func hadleRefresh(_ refreshControl: UIRefreshControl) {
+        // Se indica analítica de acción
+        FIRAnalytics.logEvent(withName: "RefrescarListOfAuthorPosts", parameters: ["posts" : "authorposts" as NSObject])
+        
+        refreshControl.endRefreshing()
+    }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -107,7 +112,6 @@ class AuthorPostList: UITableViewController {
 
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
