@@ -60,10 +60,10 @@
 		5D931CD91E83EEEA005051E9 = {
 			isa = PBXGroup;
 			children = (
+				5D931CE41E83EEEA005051E9 /* Scoops */,
 				BDBC9BE241FC2CA7AAE70ECD /* Frameworks */,
 				53CF41E8361536CDBCF16B63 /* Pods */,
 				5D931CE31E83EEEA005051E9 /* Products */,
-				5D931CE41E83EEEA005051E9 /* Scoops */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,7 +83,6 @@
 				5D931CF91E83F087005051E9 /* Storyboards */,
 				5D931CF81E83F076005051E9 /* ViewControllers */,
 			);
-			name = Scoops;
 			path = Scoops;
 			sourceTree = "<group>";
 		};
@@ -92,7 +91,6 @@
 			children = (
 				5D931CE51E83EEEA005051E9 /* AppDelegate.swift */,
 			);
-			name = AppDelegate;
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
@@ -103,7 +101,6 @@
 				5D931D091E8414CA005051E9 /* Auth Users */,
 				5D931D001E83F5D1005051E9 /* MainTimeLine.swift */,
 			);
-			name = ViewControllers;
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
@@ -113,7 +110,6 @@
 				5D931CEE1E83EEEA005051E9 /* LaunchScreen.storyboard */,
 				5D931CFC1E83F110005051E9 /* TimeLine.storyboard */,
 			);
-			name = Storyboards;
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
@@ -124,7 +120,6 @@
 				DF656EC91E943C0900BCD7AA /* GoogleService-Info.plist */,
 				5D931CF11E83EEEA005051E9 /* Info.plist */,
 			);
-			name = Resources;
 			path = Resources;
 			sourceTree = "<group>";
 		};
@@ -133,7 +128,6 @@
 			children = (
 				5D931D021E83F67C005051E9 /* PostReview.swift */,
 			);
-			name = "All users";
 			path = "All users";
 			sourceTree = "<group>";
 		};
@@ -143,7 +137,6 @@
 				5D931D041E83F773005051E9 /* AuthorPostList.swift */,
 				5D931D061E83F7BA005051E9 /* NewPostController.swift */,
 			);
-			name = "Auth Users";
 			path = "Auth Users";
 			sourceTree = "<group>";
 		};
