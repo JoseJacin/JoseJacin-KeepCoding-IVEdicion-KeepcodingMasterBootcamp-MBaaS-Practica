@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTimeLine: UITableViewController {
 
@@ -22,6 +23,9 @@ class MainTimeLine: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.refreshControl?.addTarget(self, action: #selector(hadleRefresh(_:)), for: UIControlEvents.valueChanged)
+        
+        // Se indica analítica de Pantalla
+        FIRAnalytics.setScreenName("MainTimeLine", screenClass: "Main")
     }
     
     func hadleRefresh(_ refreshControl: UIRefreshControl) {

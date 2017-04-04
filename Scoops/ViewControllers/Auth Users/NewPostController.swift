@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -25,6 +26,9 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Se indica analítica de Pantalla
+        FIRAnalytics.setScreenName("NewPostController", screenClass: "AuthUsers")
     }
 
     override func didReceiveMemoryWarning() {

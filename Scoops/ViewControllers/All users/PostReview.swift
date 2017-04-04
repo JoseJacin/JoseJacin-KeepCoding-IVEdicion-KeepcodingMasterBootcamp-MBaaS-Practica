@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PostReview: UIViewController {
 
@@ -14,10 +15,14 @@ class PostReview: UIViewController {
     @IBOutlet weak var imagePost: UIImageView!
     @IBOutlet weak var postTxt: UITextField!
     @IBOutlet weak var titleTxt: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Se indica analítica de Pantalla
+        FIRAnalytics.setScreenName("PostReview", screenClass: "AllUsers")
     }
 
     override func didReceiveMemoryWarning() {

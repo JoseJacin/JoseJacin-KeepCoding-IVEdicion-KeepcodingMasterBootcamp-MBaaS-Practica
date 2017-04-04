@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AuthorPostList: UITableViewController {
 
@@ -24,6 +25,9 @@ class AuthorPostList: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.refreshControl?.addTarget(self, action: #selector(hadleRefresh(_:)), for: UIControlEvents.valueChanged)
+        
+        // Se indica analítica de Pantalla
+        FIRAnalytics.setScreenName("AuthorPostList", screenClass: "AuthUsers")
     }
     
     func hadleRefresh(_ refreshControl: UIRefreshControl) {
