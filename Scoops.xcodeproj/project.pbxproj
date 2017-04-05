@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5D931CE61E83EEEA005051E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D931CE51E83EEEA005051E9 /* AppDelegate.swift */; };
-		5D931CED1E83EEEA005051E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D931CEC1E83EEEA005051E9 /* Assets.xcassets */; };
 		5D931CF01E83EEEA005051E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D931CEE1E83EEEA005051E9 /* LaunchScreen.storyboard */; };
 		5D931CFD1E83F110005051E9 /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D931CFC1E83F110005051E9 /* TimeLine.storyboard */; };
 		5D931D011E83F5D1005051E9 /* MainTimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D931D001E83F5D1005051E9 /* MainTimeLine.swift */; };
@@ -17,13 +16,13 @@
 		5D931D071E83F7BA005051E9 /* NewPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D931D061E83F7BA005051E9 /* NewPostController.swift */; };
 		92710EA0097C6EBDD304B4A3 /* Pods_Scoops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D945384C9E209D80DB649769 /* Pods_Scoops.framework */; };
 		DF656ECA1E943C0900BCD7AA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF656EC91E943C0900BCD7AA /* GoogleService-Info.plist */; };
+		DF656ECC1E946BE700BCD7AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF656ECB1E946BE700BCD7AA /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		013E1761A7975733A8797845 /* Pods-Scoops.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoops.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scoops/Pods-Scoops.debug.xcconfig"; sourceTree = "<group>"; };
 		5D931CE21E83EEEA005051E9 /* Scoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D931CE51E83EEEA005051E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5D931CEC1E83EEEA005051E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D931CEF1E83EEEA005051E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D931CF11E83EEEA005051E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D931CFC1E83F110005051E9 /* TimeLine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TimeLine.storyboard; sourceTree = "<group>"; };
@@ -34,6 +33,7 @@
 		6D370D31F025F58950EF8D2B /* Pods-Scoops.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoops.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scoops/Pods-Scoops.release.xcconfig"; sourceTree = "<group>"; };
 		D945384C9E209D80DB649769 /* Pods_Scoops.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoops.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF656EC91E943C0900BCD7AA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DF656ECB1E946BE700BCD7AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,7 @@
 		5D931CFB1E83F0A8005051E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5D931CEC1E83EEEA005051E9 /* Assets.xcassets */,
+				DF656ECB1E946BE700BCD7AA /* Assets.xcassets */,
 				DF656EC91E943C0900BCD7AA /* GoogleService-Info.plist */,
 				5D931CF11E83EEEA005051E9 /* Info.plist */,
 			);
@@ -213,8 +213,8 @@
 			files = (
 				5D931CFD1E83F110005051E9 /* TimeLine.storyboard in Resources */,
 				DF656ECA1E943C0900BCD7AA /* GoogleService-Info.plist in Resources */,
+				DF656ECC1E946BE700BCD7AA /* Assets.xcassets in Resources */,
 				5D931CF01E83EEEA005051E9 /* LaunchScreen.storyboard in Resources */,
-				5D931CED1E83EEEA005051E9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
