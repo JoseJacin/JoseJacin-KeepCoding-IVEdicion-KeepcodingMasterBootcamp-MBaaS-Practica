@@ -7,10 +7,14 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,GIDSignInUIDelegate {
 
+    //MARK: - Properties
+    var handle: FIRAuthStateDidChangeListenerHandle!
+    
     //MARK: - Typealias
     typealias actionUserCmd = (_ : String, _ : String) -> Void
     
@@ -20,11 +24,28 @@ class LoginViewController: UIViewController {
         case toSignIn = "Registrar nuevo usuario"
     }
     
+    //MARK: - Outlets
+    @IBOutlet weak var googleBtnSignIn: UIButton!
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Se indica que el botón de Login con Google va a ser el que tenga el control del delegado de GoogleID
+        GIDSignIn.sharedInstance().uiDelegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Se añade un listener de autenticación para hacer Login
+        handle = FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+            print("******* El mail del usuario logado es:\(user?.email ?? "")")
+            if let _ = user {
+                self.performSegue(withIdentifier: "launchWithLogged", sender: nil)
+                return
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,11 +54,19 @@ class LoginViewController: UIViewController {
     }
     
     //MARK: - Actions
-    @IBAction func doLogin(_ sender: Any) {
+    // Acción que se ejecuta cuando se pulsa el botón Login
+    @IBAction func doLoginEmail(_ sender: Any) {
+        // Se muestra el Dialog de Login
         showUserLoginDialog(withCommand: login, userAction: .toLogin)
     }
+
+    // Acción que se ejecuta cuando se pulsa el botón Login con Google
+    @IBAction func doLoginGoogle(_ sender: Any) {
+        // Se dispara el flujo de Google con GoogleID
+        GIDSignIn.sharedInstance().signIn()
+    }
     
-    //MARK: - Actions
+    //MARK: - Functions
     // Función que muestra el dialogo de Login y captura las credenciales de usuario
     func showUserLoginDialog(withCommand actionCmd: @escaping actionUserCmd, userAction: ActionUser) {
         // Se instancia el controlador de alertas
@@ -78,13 +107,38 @@ class LoginViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    /*
+    // Función que realiza el Login del usuario. Si este no existe, lo crea
+    fileprivate func login(_ name: String, andPass pass: String) {
+        FIRAuth.auth()?.signIn(withEmail: name, password: pass, completion: { (user, error) in
+            
+            // Se comprueba si algo ha salido mal
+            if let _ = error {
+                // Ha ocurrido un error
+                print("Tenemos un error -> \(error?.localizedDescription ?? ""))")
+                // Se crea el usuario
+                FIRAuth.auth()?.createUser(withEmail: name, password: pass, completion: { (user, error) in
+                    
+                    // Se comprueba si algo ha salido mal
+                    if let _ = error {
+                        print("Tenemos un error -> \(error?.localizedDescription ?? ""))")
+                        return
+                    }
+                })
+                self.performSegue(withIdentifier: "launchWithLogged", sender: nil)
+                return
+            }
+            print("user: \(user?.email! ?? "")")
+        })
+    }
+    
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "launchWithLogged" {
+            let controller = (segue.destination as! UINavigationController).topViewController as! MainTimeLine
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        }
     }
-    */
-
 }

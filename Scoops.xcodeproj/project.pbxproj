@@ -81,9 +81,9 @@
 			isa = PBXGroup;
 			children = (
 				5D931CF71E83F069005051E9 /* AppDelegate */,
-				5D931CFB1E83F0A8005051E9 /* Resources */,
-				5D931CF91E83F087005051E9 /* Storyboards */,
 				5D931CF81E83F076005051E9 /* ViewControllers */,
+				5D931CF91E83F087005051E9 /* Storyboards */,
+				5D931CFB1E83F0A8005051E9 /* Resources */,
 			);
 			path = Scoops;
 			sourceTree = "<group>";
