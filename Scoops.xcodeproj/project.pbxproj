@@ -18,6 +18,10 @@
 		DF263FD21E96DC4500F4F174 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF263FD11E96DC4500F4F174 /* LoginViewController.swift */; };
 		DF263FD61E9709A100F4F174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF263FD51E9709A100F4F174 /* Assets.xcassets */; };
 		DF27458A1E970F1B00C7819D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF2745891E970F1B00C7819D /* GoogleService-Info.plist */; };
+		DF28D7741E980DA700D1B407 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF28D7731E980DA700D1B407 /* Constants.swift */; };
+		DFDA9E761E98094300B8346B /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA9E751E98094300B8346B /* UIImageView.swift */; };
+		DFDA9E791E980BDC00B8346B /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA9E781E980BDC00B8346B /* Files.swift */; };
+		DFDA9E7B1E980C1C00B8346B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA9E7A1E980C1C00B8346B /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		DF263FD11E96DC4500F4F174 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DF263FD51E9709A100F4F174 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF2745891E970F1B00C7819D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DF28D7731E980DA700D1B407 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DFDA9E751E98094300B8346B /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		DFDA9E781E980BDC00B8346B /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
+		DFDA9E7A1E980C1C00B8346B /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,8 @@
 		5D931CE41E83EEEA005051E9 /* Scoops */ = {
 			isa = PBXGroup;
 			children = (
+				DFDA9E771E980B7600B8346B /* Helpers */,
+				DFDA9E741E98092500B8346B /* Extensions */,
 				5D931CF71E83F069005051E9 /* AppDelegate */,
 				5D931CF81E83F076005051E9 /* ViewControllers */,
 				5D931CF91E83F087005051E9 /* Storyboards */,
@@ -149,6 +159,24 @@
 				D945384C9E209D80DB649769 /* Pods_Scoops.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFDA9E741E98092500B8346B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DFDA9E751E98094300B8346B /* UIImageView.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		DFDA9E771E980B7600B8346B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DFDA9E781E980BDC00B8346B /* Files.swift */,
+				DFDA9E7A1E980C1C00B8346B /* Errors.swift */,
+				DF28D7731E980DA700D1B407 /* Constants.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,10 +305,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF263FD21E96DC4500F4F174 /* LoginViewController.swift in Sources */,
+				DFDA9E791E980BDC00B8346B /* Files.swift in Sources */,
 				5D931D051E83F773005051E9 /* AuthorPostList.swift in Sources */,
+				DFDA9E761E98094300B8346B /* UIImageView.swift in Sources */,
 				5D931CE61E83EEEA005051E9 /* AppDelegate.swift in Sources */,
+				DF28D7741E980DA700D1B407 /* Constants.swift in Sources */,
 				5D931D031E83F67C005051E9 /* PostReview.swift in Sources */,
 				5D931D071E83F7BA005051E9 /* NewPostController.swift in Sources */,
+				DFDA9E7B1E980C1C00B8346B /* Errors.swift in Sources */,
 				5D931D011E83F5D1005051E9 /* MainTimeLine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

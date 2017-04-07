@@ -52,7 +52,7 @@ extension AppDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         // Se comprueba si ha ocurrido algún error
         if let _ = error {
-            print("Error en Login en GoogleID")
+            print(constants.errorLoginGoogleID)
             return
         }
         
@@ -68,7 +68,7 @@ extension AppDelegate {
         FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
             // Se comprueba si ha ocurrido algún error
             if let _ = error {
-                print("Error Login en Firebase con los credenciales de GoogleID")
+                print(constants.errorLoginFirebaseWithGoogleID)
                 return
             }
             print(user?.displayName ?? "")

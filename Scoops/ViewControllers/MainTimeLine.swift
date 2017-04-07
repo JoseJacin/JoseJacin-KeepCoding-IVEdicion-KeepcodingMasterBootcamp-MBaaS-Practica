@@ -27,7 +27,7 @@ class MainTimeLine: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(hadleRefresh(_:)), for: UIControlEvents.valueChanged)
         
         // Se indica analítica de Pantalla
-        FIRAnalytics.setScreenName("MainTimeLine", screenClass: "Main")
+        FIRAnalytics.setScreenName(constants.MainTimeLine, screenClass: "Main")
     }
 
     override func didReceiveMemoryWarning() {

@@ -26,7 +26,7 @@ class PostReview: UIViewController {
         // Do any additional setup after loading the view.
         
         // Se indica analítica de Pantalla
-        FIRAnalytics.setScreenName("PostReview", screenClass: "AllUsers")
+        FIRAnalytics.setScreenName(constants.PostReview, screenClass: "AllUsers")
         
         // Se establece el valor de las valoraciones
         rateSlider.value = 3

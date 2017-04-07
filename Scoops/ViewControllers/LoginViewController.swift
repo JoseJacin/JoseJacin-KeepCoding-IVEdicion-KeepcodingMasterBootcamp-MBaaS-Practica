@@ -26,6 +26,8 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
     
     //MARK: - Outlets
     @IBOutlet weak var googleBtnSignIn: UIButton!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var userimage: UIImageView!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -65,6 +67,7 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
         // Se dispara el flujo de Google con GoogleID
         GIDSignIn.sharedInstance().signIn()
     }
+    
     
     //MARK: - Functions
     // Función que muestra el dialogo de Login y captura las credenciales de usuario
@@ -129,6 +132,36 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
             }
             print("user: \(user?.email! ?? "")")
         })
+    }
+    
+    func reloadUI(){
+        if let currentUser = FIRAuth.auth()?.currentUser {
+            username.text = currentUser.displayName
+            
+            if let url = currentUser.photoURL {
+                userimage.imageFromServerURL(urlString: url.absoluteString)
+            }
+            
+        }else{
+            username.text = ""
+            userimage.image = nil
+        }
+    }
+    
+    fileprivate func makeLogout() {
+        // Se valida si hay un usuario logado
+        if let _ = FIRAuth.auth()?.currentUser {
+            // Hay un usuario logado, por lo que se procede a hacer el Logout
+            do {
+                // Se hace Logout de Firebase
+                try FIRAuth.auth()?.signOut()
+                // Se hace Logout de GoogleID
+                GIDSignIn.sharedInstance().signOut()
+            } catch let error {
+                // Algo ha ido mal
+                print(error)
+            }
+        }
     }
     
     // MARK: - Navigation

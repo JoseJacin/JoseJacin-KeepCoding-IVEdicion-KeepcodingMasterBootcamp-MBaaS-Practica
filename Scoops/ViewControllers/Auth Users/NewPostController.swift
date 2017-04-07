@@ -31,7 +31,7 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         // Do any additional setup after loading the view.
         
         // Se indica analítica de Pantalla
-        FIRAnalytics.setScreenName("NewPostController", screenClass: "AuthUsers")
+        FIRAnalytics.setScreenName(constants.NewPostController, screenClass: "AuthUsers")
     }
 
     override func didReceiveMemoryWarning() {

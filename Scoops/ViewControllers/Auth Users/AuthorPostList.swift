@@ -29,7 +29,7 @@ class AuthorPostList: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(hadleRefresh(_:)), for: UIControlEvents.valueChanged)
         
         // Se indica analítica de Pantalla
-        FIRAnalytics.setScreenName("AuthorPostList", screenClass: "AuthUsers")
+        FIRAnalytics.setScreenName(constants.AuthorPostList, screenClass: "AuthUsers")
     }
 
     override func didReceiveMemoryWarning() {
