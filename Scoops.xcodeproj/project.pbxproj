@@ -70,10 +70,10 @@
 		5D931CD91E83EEEA005051E9 = {
 			isa = PBXGroup;
 			children = (
-				5D931CE41E83EEEA005051E9 /* Scoops */,
 				BDBC9BE241FC2CA7AAE70ECD /* Frameworks */,
 				53CF41E8361536CDBCF16B63 /* Pods */,
 				5D931CE31E83EEEA005051E9 /* Products */,
+				5D931CE41E83EEEA005051E9 /* Scoops */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,12 +88,12 @@
 		5D931CE41E83EEEA005051E9 /* Scoops */ = {
 			isa = PBXGroup;
 			children = (
-				DFDA9E771E980B7600B8346B /* Helpers */,
-				DFDA9E741E98092500B8346B /* Extensions */,
 				5D931CF71E83F069005051E9 /* AppDelegate */,
-				5D931CF81E83F076005051E9 /* ViewControllers */,
-				5D931CF91E83F087005051E9 /* Storyboards */,
+				DFDA9E741E98092500B8346B /* Extensions */,
+				DFDA9E771E980B7600B8346B /* Helpers */,
 				5D931CFB1E83F0A8005051E9 /* Resources */,
+				5D931CF91E83F087005051E9 /* Storyboards */,
+				5D931CF81E83F076005051E9 /* ViewControllers */,
 			);
 			path = Scoops;
 			sourceTree = "<group>";
@@ -111,8 +111,8 @@
 			children = (
 				5D931D081E8414BB005051E9 /* All users */,
 				5D931D091E8414CA005051E9 /* Auth Users */,
-				5D931D001E83F5D1005051E9 /* MainTimeLine.swift */,
 				DF263FD11E96DC4500F4F174 /* LoginViewController.swift */,
+				5D931D001E83F5D1005051E9 /* MainTimeLine.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -167,16 +167,18 @@
 				DFDA9E751E98094300B8346B /* UIImageView.swift */,
 			);
 			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DFDA9E771E980B7600B8346B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				DFDA9E781E980BDC00B8346B /* Files.swift */,
-				DFDA9E7A1E980C1C00B8346B /* Errors.swift */,
 				DF28D7731E980DA700D1B407 /* Constants.swift */,
+				DFDA9E7A1E980C1C00B8346B /* Errors.swift */,
+				DFDA9E781E980BDC00B8346B /* Files.swift */,
 			);
 			name = Helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

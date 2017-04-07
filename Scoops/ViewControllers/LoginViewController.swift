@@ -14,7 +14,7 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
 
     //MARK: - Properties
     var handle: FIRAuthStateDidChangeListenerHandle!
-    
+
     //MARK: - Typealias
     typealias actionUserCmd = (_ : String, _ : String) -> Void
     
@@ -43,6 +43,9 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
         // Se añade un listener de autenticación para hacer Login
         handle = FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             print("******* El mail del usuario logado es:\(user?.email ?? "")")
+            // Se obtiene la información del usuario
+            self.getUserInfo(user)
+            
             if let _ = user {
                 self.performSegue(withIdentifier: "launchWithLogged", sender: nil)
                 return
@@ -68,6 +71,10 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().signIn()
     }
     
+    // Acción que se ejecuta cuando se pulsa el botón Logout
+    @IBAction func doLogin(_ sender: Any) {
+        makeLogout()
+    }
     
     //MARK: - Functions
     // Función que muestra el dialogo de Login y captura las credenciales de usuario
@@ -148,6 +155,7 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
         }
     }
     
+    // Función que desloguea el usuario conectado
     fileprivate func makeLogout() {
         // Se valida si hay un usuario logado
         if let _ = FIRAuth.auth()?.currentUser {
@@ -163,6 +171,26 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
             }
         }
     }
+    
+    // Método que obtiene parte de la información del usuario Logado
+    func getUserInfo(_ user: FIRUser!) {
+        // Se comprueba que el usuario no llegue vacío y no sea un usuario anónimo
+        if let _ = user, !user.isAnonymous {
+            // El usuario es correcto
+            // Se obtiene el ID del usuario
+            let uid = user.uid
+            print(uid)
+            // Se obtiene el eMail del usuario
+            let userDisplay = user.displayName
+            self.title = userDisplay
+            // Se consulta si el usuario tiene foto de perfil
+            if let picProfile = user.photoURL as URL! {
+                // Se sincroniza la imagen con la vista para mostrarla
+                userimage.imageFromServerURL(urlString: picProfile.path)
+            }
+        }
+    }
+    
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
