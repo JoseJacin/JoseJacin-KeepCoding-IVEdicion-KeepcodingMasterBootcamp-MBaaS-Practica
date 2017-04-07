@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WTr-km-IDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qNs-Zt-Ay0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -92,7 +92,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="peu-K4-xFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2002" y="188"/>
+            <point key="canvasLocation" x="1854" y="185"/>
         </scene>
         <!--Title-->
         <scene sceneID="IjY-QI-dXU">
@@ -197,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yDO-cU-oMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2797.5999999999999" y="191.1544227886057"/>
+            <point key="canvasLocation" x="2638" y="185"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7qH-wA-Thm">
@@ -219,7 +219,59 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYb-QK-Wpo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="184.85757121439281"/>
+            <point key="canvasLocation" x="286" y="185"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="JHl-rV-DX7">
+            <objects>
+                <viewController id="fLW-Lw-7kL" customClass="LoginViewController" customModule="Scoops" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bFK-td-ot8"/>
+                        <viewControllerLayoutGuide type="bottom" id="5ko-3q-Xoz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ige-kO-wbJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYC-uE-xVn">
+                                <rect key="frame" x="16" y="558" width="343" height="28"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="7A1-kp-CMT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doLogin:" destination="fLW-Lw-7kL" eventType="touchUpInside" id="IHL-6M-knG"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="BackgroundLogo" translatesAutoresizingMaskIntoConstraints="NO" id="P1b-Dn-NhB">
+                                <rect key="frame" x="38" y="178" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="jh8-uj-7bT"/>
+                                    <constraint firstAttribute="width" constant="300" id="qn0-Vt-4bf"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BYC-uE-xVn" firstAttribute="top" secondItem="bFK-td-ot8" secondAttribute="bottom" constant="494" id="3me-Q3-CGZ"/>
+                            <constraint firstItem="BYC-uE-xVn" firstAttribute="top" secondItem="P1b-Dn-NhB" secondAttribute="bottom" constant="80" id="4Df-iE-sLG"/>
+                            <constraint firstItem="P1b-Dn-NhB" firstAttribute="centerX" secondItem="ige-kO-wbJ" secondAttribute="centerX" id="RO7-qa-jYa"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="BYC-uE-xVn" secondAttribute="leading" id="gnc-Lb-zNg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BYC-uE-xVn" secondAttribute="trailing" id="hAz-rP-UvO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="c7O-Le-QnV"/>
+                    <connections>
+                        <segue destination="WTr-km-IDr" kind="show" identifier="launchWithLogged" id="Q1z-hd-ylF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bce-Zy-Oli" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-479.19999999999999" y="184.85757121439281"/>
         </scene>
         <!--Post Review-->
         <scene sceneID="m7W-i6-yYA">
@@ -348,7 +400,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="moB-HV-1KT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="445.60000000000002" y="960.2698650674663"/>
+            <point key="canvasLocation" x="1071" y="922"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="77Z-rY-yST">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qNs-Zt-Ay0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GHH-Yz-oUC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fLW-Lw-7kL" kind="relationship" relationship="rootViewController" id="5DN-GM-7Hm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddB-XC-Pxv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1249" y="185"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BackgroundLogo" width="2013" height="2013"/>
+    </resources>
 </document>

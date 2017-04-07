@@ -43,17 +43,14 @@ class PostReview: UIViewController {
     
     //MARK: - Actions
     @IBAction func rateAction(_ sender: Any) {
-        // Se indica analítica de acción
-        FIRAnalytics.logEvent(withName: "rateAction", parameters: ["posts" : "reviewposts" as NSObject])
-
         // Se establecen los pasos del slider para que solo se puedan seleccionar valores enteros
         rateSlider.value = roundf(rateSlider.value)
-        // Se asigna al indicador de estrellas
         slideLabel.text = String(Int(rateSlider.value))
-        print("slider: \(rateSlider.value)")
+        
+        // En esta parte no se han indicado estadísticas ya que manda muchas
+        
     }
 
-    
     @IBAction func ratePost(_ sender: Any) {
         // Se indica analítica de acción
         FIRAnalytics.logEvent(withName: "ratePost", parameters: ["posts" : "reviewposts" as NSObject])
