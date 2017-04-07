@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import FirebaseAuth
-import GoogleSignIn
+import Firebase
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
+class LoginViewController: UIViewController {
 
     //MARK: - Typealias
     typealias actionUserCmd = (_ : String, _ : String) -> Void
@@ -35,6 +34,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     //MARK: - Actions
     @IBAction func doLogin(_ sender: Any) {
+        showUserLoginDialog(withCommand: login, userAction: .toLogin)
     }
     
     //MARK: - Actions

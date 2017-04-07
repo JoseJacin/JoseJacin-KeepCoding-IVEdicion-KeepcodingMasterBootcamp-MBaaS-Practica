@@ -8,5 +8,10 @@ target 'Scoops' do
   # Pods for Scoops
   # Pods for Firebase
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  
+  # Pods para usar GoogleID
+  pod 'GoogleSignIn'
 
 end
