@@ -1,5 +1,5 @@
 //
-//  Return.swift
+//  Callback.swift
 //  Scoops
 //
 //  Created by Jose Sanchez Rodriguez on 8/4/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Return {
+struct Callback {
     
     var done: Bool
     var message: String
@@ -20,10 +20,9 @@ struct Return {
     
     var description : String {
         if self.done {
-            return "Operation successful: " + self.message
+            return "Operation OK: " + self.message
         }else{
-            return "Operation error: " + self.message
+            return "Operation KO: " + self.message
         }
     }
-    
 }
