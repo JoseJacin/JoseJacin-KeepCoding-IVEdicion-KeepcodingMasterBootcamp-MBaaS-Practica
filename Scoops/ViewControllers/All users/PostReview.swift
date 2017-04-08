@@ -11,6 +11,9 @@ import Firebase
 
 class PostReview: UIViewController {
     
+    //MARK: - Properties
+    var post: Post!
+    
     //MARK: - Outlets
     @IBOutlet weak var rateSlider: UISlider!
     @IBOutlet weak var rateLabel: UILabel!
@@ -22,11 +25,22 @@ class PostReview: UIViewController {
     //MARK: - Lifecyle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         // Se indica analítica de Pantalla
         FIRAnalytics.setScreenName(constants.PostReview, screenClass: "AllUsers")
+
+        // Se deshabilitan los elementos para que no se pueda interaccionar con ellos si no se está logueado
+        rateSlider.isEnabled = false
+        
+        if let elementPost = post,
+            let currentUser = FIRAuth.auth()?.currentUser {
+            titleTxt.text = elementPost.title
+            postTxt.text = elementPost.desc
+            
+            PostModel
+            
+            }
+        }
         
         // Se establece el valor de las valoraciones
         rateSlider.value = 3

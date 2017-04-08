@@ -12,7 +12,7 @@ import Firebase
 class MainTimeLine: UITableViewController {
 
     //MARK: - Properties
-    var model = ["post1", "post2"]
+    var model : [Post] = []
     let cellIdentier = "POSTSCELL"
     
     //MARK: - Lifecycle
@@ -55,7 +55,18 @@ class MainTimeLine: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentier, for: indexPath)
 
-        cell.textLabel?.text = model[indexPath.row]
+        var post: Post = model[indexPath.row]
+        
+        cell.textLabel?.text = post.title
+        
+        var averageRating = 0
+        if post.totalRated > 0 {
+            averageRating = post.totalRating / post.totalRated
+        }
+        
+        cell.imageView?.imageFromServerURL(urlString: post.photo)
+        
+        cell.detailTextLabel?.text = "Rating" + averageRating.description
 
         return cell
     }
@@ -74,7 +85,10 @@ class MainTimeLine: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "ShowRatingPost" {
             let vc = segue.destination as! PostReview
-            // aqui pasamos el item selecionado
+            // Se almacena el ultimo valor seleccionado
+            let lastSelectedIndex = self.tableView.indexPathForSelectedRow?.last
+            // Se pasa el elemento seleccionado
+            vc.post = model[lastSelectedIndex!]
         }
     }
 }

@@ -45,11 +45,6 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
             print("******* El mail del usuario logado es:\(user?.email ?? "")")
             // Se obtiene la información del usuario
             self.getUserInfo(user)
-            
-            if let _ = user {
-                self.performSegue(withIdentifier: "launchWithLogged", sender: nil)
-                return
-            }
         })
     }
 
@@ -181,13 +176,18 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
             let uid = user.uid
             print(uid)
             // Se obtiene el eMail del usuario
-            let userDisplay = user.displayName
-            self.title = userDisplay
+            username.text = user?.displayName!
+            self.title = user?.displayName!
             // Se consulta si el usuario tiene foto de perfil
             if let picProfile = user.photoURL as URL! {
                 // Se sincroniza la imagen con la vista para mostrarla
-                userimage.imageFromServerURL(urlString: picProfile.path)
+                userimage.imageFromServerURL(urlString: picProfile.absoluteString)
             }
+        } else {
+            // Se inicializan los valores
+            username.text = ""
+            self.title = ""
+            userimage.imageFromServerURL(urlString: "")
         }
     }
     

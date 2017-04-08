@@ -19,6 +19,11 @@
 		DF263FD61E9709A100F4F174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF263FD51E9709A100F4F174 /* Assets.xcassets */; };
 		DF27458A1E970F1B00C7819D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF2745891E970F1B00C7819D /* GoogleService-Info.plist */; };
 		DF28D7741E980DA700D1B407 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF28D7731E980DA700D1B407 /* Constants.swift */; };
+		DFC8EF951E98240A00824F69 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = DFC8EF941E98240A00824F69 /* avatar.png */; };
+		DFC8EF981E982C4600824F69 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EF971E982C4600824F69 /* Post.swift */; };
+		DFC8EF9B1E990B9000824F69 /* Post+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EF9A1E990B9000824F69 /* Post+Utils.swift */; };
+		DFC8EF9D1E990D9400824F69 /* Return.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EF9C1E990D9400824F69 /* Return.swift */; };
+		DFC8EF9F1E99134200824F69 /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EF9E1E99134200824F69 /* NSObject.swift */; };
 		DFDA9E761E98094300B8346B /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA9E751E98094300B8346B /* UIImageView.swift */; };
 		DFDA9E791E980BDC00B8346B /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA9E781E980BDC00B8346B /* Files.swift */; };
 		DFDA9E7B1E980C1C00B8346B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA9E7A1E980C1C00B8346B /* Errors.swift */; };
@@ -41,6 +46,11 @@
 		DF263FD51E9709A100F4F174 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF2745891E970F1B00C7819D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF28D7731E980DA700D1B407 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DFC8EF941E98240A00824F69 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
+		DFC8EF971E982C4600824F69 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		DFC8EF9A1E990B9000824F69 /* Post+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Post+Utils.swift"; sourceTree = "<group>"; };
+		DFC8EF9C1E990D9400824F69 /* Return.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Return.swift; sourceTree = "<group>"; };
+		DFC8EF9E1E99134200824F69 /* NSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSObject.swift; path = ../NSObject.swift; sourceTree = "<group>"; };
 		DFDA9E751E98094300B8346B /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		DFDA9E781E980BDC00B8346B /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		DFDA9E7A1E980C1C00B8346B /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -70,10 +80,10 @@
 		5D931CD91E83EEEA005051E9 = {
 			isa = PBXGroup;
 			children = (
-				BDBC9BE241FC2CA7AAE70ECD /* Frameworks */,
-				53CF41E8361536CDBCF16B63 /* Pods */,
-				5D931CE31E83EEEA005051E9 /* Products */,
 				5D931CE41E83EEEA005051E9 /* Scoops */,
+				5D931CE31E83EEEA005051E9 /* Products */,
+				53CF41E8361536CDBCF16B63 /* Pods */,
+				BDBC9BE241FC2CA7AAE70ECD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,9 +101,10 @@
 				5D931CF71E83F069005051E9 /* AppDelegate */,
 				DFDA9E741E98092500B8346B /* Extensions */,
 				DFDA9E771E980B7600B8346B /* Helpers */,
-				5D931CFB1E83F0A8005051E9 /* Resources */,
 				5D931CF91E83F087005051E9 /* Storyboards */,
+				DFC8EF961E982C3500824F69 /* Models */,
 				5D931CF81E83F076005051E9 /* ViewControllers */,
+				5D931CFB1E83F0A8005051E9 /* Resources */,
 			);
 			path = Scoops;
 			sourceTree = "<group>";
@@ -129,6 +140,7 @@
 		5D931CFB1E83F0A8005051E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DFC8EF941E98240A00824F69 /* avatar.png */,
 				DF263FD51E9709A100F4F174 /* Assets.xcassets */,
 				DF2745891E970F1B00C7819D /* GoogleService-Info.plist */,
 				5D931CF11E83EEEA005051E9 /* Info.plist */,
@@ -161,12 +173,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DFC8EF961E982C3500824F69 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DFC8EF971E982C4600824F69 /* Post.swift */,
+				DFC8EF9A1E990B9000824F69 /* Post+Utils.swift */,
+				DFC8EF9C1E990D9400824F69 /* Return.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		DFDA9E741E98092500B8346B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				DFDA9E751E98094300B8346B /* UIImageView.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -176,8 +197,8 @@
 				DF28D7731E980DA700D1B407 /* Constants.swift */,
 				DFDA9E7A1E980C1C00B8346B /* Errors.swift */,
 				DFDA9E781E980BDC00B8346B /* Files.swift */,
+				DFC8EF9E1E99134200824F69 /* NSObject.swift */,
 			);
-			name = Helpers;
 			path = Helpers;
 			sourceTree = "<group>";
 		};
@@ -245,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D931CFD1E83F110005051E9 /* TimeLine.storyboard in Resources */,
+				DFC8EF951E98240A00824F69 /* avatar.png in Resources */,
 				DF27458A1E970F1B00C7819D /* GoogleService-Info.plist in Resources */,
 				DF263FD61E9709A100F4F174 /* Assets.xcassets in Resources */,
 				5D931CF01E83EEEA005051E9 /* LaunchScreen.storyboard in Resources */,
@@ -307,8 +329,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF263FD21E96DC4500F4F174 /* LoginViewController.swift in Sources */,
+				DFC8EF9B1E990B9000824F69 /* Post+Utils.swift in Sources */,
+				DFC8EF981E982C4600824F69 /* Post.swift in Sources */,
+				DFC8EF9F1E99134200824F69 /* NSObject.swift in Sources */,
 				DFDA9E791E980BDC00B8346B /* Files.swift in Sources */,
 				5D931D051E83F773005051E9 /* AuthorPostList.swift in Sources */,
+				DFC8EF9D1E990D9400824F69 /* Return.swift in Sources */,
 				DFDA9E761E98094300B8346B /* UIImageView.swift in Sources */,
 				5D931CE61E83EEEA005051E9 /* AppDelegate.swift in Sources */,
 				DF28D7741E980DA700D1B407 /* Constants.swift in Sources */,
