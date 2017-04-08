@@ -22,8 +22,10 @@
 		DFC8EF951E98240A00824F69 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = DFC8EF941E98240A00824F69 /* avatar.png */; };
 		DFC8EF981E982C4600824F69 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EF971E982C4600824F69 /* Post.swift */; };
 		DFC8EF9B1E990B9000824F69 /* Post+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EF9A1E990B9000824F69 /* Post+Utils.swift */; };
-		DFC8EF9D1E990D9400824F69 /* Return.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EF9C1E990D9400824F69 /* Return.swift */; };
 		DFC8EF9F1E99134200824F69 /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EF9E1E99134200824F69 /* NSObject.swift */; };
+		DFC8EFA11E9933FB00824F69 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EFA01E9933FB00824F69 /* Typealias.swift */; };
+		DFC8EFA31E99405D00824F69 /* Callbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EFA21E99405D00824F69 /* Callbacks.swift */; };
+		DFC8EFA51E995CDB00824F69 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC8EFA41E995CDB00824F69 /* Rating.swift */; };
 		DFDA9E761E98094300B8346B /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA9E751E98094300B8346B /* UIImageView.swift */; };
 		DFDA9E791E980BDC00B8346B /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA9E781E980BDC00B8346B /* Files.swift */; };
 		DFDA9E7B1E980C1C00B8346B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDA9E7A1E980C1C00B8346B /* Errors.swift */; };
@@ -49,8 +51,10 @@
 		DFC8EF941E98240A00824F69 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		DFC8EF971E982C4600824F69 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DFC8EF9A1E990B9000824F69 /* Post+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Post+Utils.swift"; sourceTree = "<group>"; };
-		DFC8EF9C1E990D9400824F69 /* Return.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Return.swift; sourceTree = "<group>"; };
 		DFC8EF9E1E99134200824F69 /* NSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSObject.swift; path = ../NSObject.swift; sourceTree = "<group>"; };
+		DFC8EFA01E9933FB00824F69 /* Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
+		DFC8EFA21E99405D00824F69 /* Callbacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Callbacks.swift; sourceTree = "<group>"; };
+		DFC8EFA41E995CDB00824F69 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		DFDA9E751E98094300B8346B /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		DFDA9E781E980BDC00B8346B /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		DFDA9E7A1E980C1C00B8346B /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -178,7 +182,8 @@
 			children = (
 				DFC8EF971E982C4600824F69 /* Post.swift */,
 				DFC8EF9A1E990B9000824F69 /* Post+Utils.swift */,
-				DFC8EF9C1E990D9400824F69 /* Return.swift */,
+				DFC8EFA21E99405D00824F69 /* Callbacks.swift */,
+				DFC8EFA41E995CDB00824F69 /* Rating.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 				DFDA9E7A1E980C1C00B8346B /* Errors.swift */,
 				DFDA9E781E980BDC00B8346B /* Files.swift */,
 				DFC8EF9E1E99134200824F69 /* NSObject.swift */,
+				DFC8EFA01E9933FB00824F69 /* Typealias.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -332,13 +338,15 @@
 				DFC8EF9B1E990B9000824F69 /* Post+Utils.swift in Sources */,
 				DFC8EF981E982C4600824F69 /* Post.swift in Sources */,
 				DFC8EF9F1E99134200824F69 /* NSObject.swift in Sources */,
+				DFC8EFA11E9933FB00824F69 /* Typealias.swift in Sources */,
 				DFDA9E791E980BDC00B8346B /* Files.swift in Sources */,
 				5D931D051E83F773005051E9 /* AuthorPostList.swift in Sources */,
-				DFC8EF9D1E990D9400824F69 /* Return.swift in Sources */,
 				DFDA9E761E98094300B8346B /* UIImageView.swift in Sources */,
 				5D931CE61E83EEEA005051E9 /* AppDelegate.swift in Sources */,
 				DF28D7741E980DA700D1B407 /* Constants.swift in Sources */,
+				DFC8EFA31E99405D00824F69 /* Callbacks.swift in Sources */,
 				5D931D031E83F67C005051E9 /* PostReview.swift in Sources */,
+				DFC8EFA51E995CDB00824F69 /* Rating.swift in Sources */,
 				5D931D071E83F7BA005051E9 /* NewPostController.swift in Sources */,
 				DFDA9E7B1E980C1C00B8346B /* Errors.swift in Sources */,
 				5D931D011E83F5D1005051E9 /* MainTimeLine.swift in Sources */,

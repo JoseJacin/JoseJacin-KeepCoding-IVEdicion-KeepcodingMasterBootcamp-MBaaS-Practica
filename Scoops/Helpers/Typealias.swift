@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct typealiases {
+    typealias PostsList = ([Post]) -> () //Array de Posts
+    typealias OperationCallbacks = (Callbacks) -> () //Callback de operaciones
+}

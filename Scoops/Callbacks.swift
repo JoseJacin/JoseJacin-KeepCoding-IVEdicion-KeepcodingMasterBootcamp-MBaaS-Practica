@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Callback {
+struct Callbacks {
     
     var done: Bool
     var message: String

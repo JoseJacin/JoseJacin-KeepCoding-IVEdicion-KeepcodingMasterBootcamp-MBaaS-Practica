@@ -84,7 +84,6 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     internal func takePictureFromCameraOrLibrary(_ source: UIImagePickerControllerSourceType) {
-        
         let picker = UIImagePickerController()
         picker.delegate = self
         switch source {
@@ -114,7 +113,7 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
 }
 
 //# MARK: - === Extensions ===
-//# MARK: Delegado del imagepicker
+//# MARK: UIImagePickerController Delegate
 extension NewPostController {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imageCaptured = (info[UIImagePickerControllerOriginalImage] as? UIImage)!

@@ -16,26 +16,35 @@ class Post: NSObject{
     var photo: String
     var lat: String
     var lng: String
-    var useruid: String
-    var email: String
     var published: Bool
-    var Rating: Int
-    var Rated: Int
+    var numRatings: Int
+    var cumulativeRating: Int
     var creationDate: String
-    var cloudRef: String?
+    var userid: String
+    var email: String
+    var ratings: [Rating]? // Según la documentación de Firebase, lo recomendable es realizar una correcta estrucuración de los datos
+    var cloudRef: String? // En vez de FIRDatabaseReference? se utiliza como String para poder tener más libertad a la hora de manejarlo
     
-    init(title: String, desc: String, lat: String, lng: String, useruid: String, email: String, published: Bool){
+    // Referencias. Lo pongo aquí para tener una referencia en el futuro
+    // Estrucutración de los datos en Firebase
+    // https://firebase.google.com/docs/database/ios/structure-data#fanout
+    // Implantación del sistema de puntuaciones
+    // https://groups.google.com/forum/#!topic/firebase-talk/EJYHxKKQ6ZA
+
+    
+    init(title: String, desc: String, lat: String, lng: String, published: Bool, userid: String, email: String){
         self.title = title
         self.desc = desc
         self.photo = ""
         self.lat = lat
         self.lng = lng
-        self.useruid = useruid
-        self.email = email
         self.published = published
-        self.Rating = 0
-        self.Rated = 0
+        self.numRatings = 0
+        self.cumulativeRating = 0
         self.creationDate = Date().description
+        self.userid = userid
+        self.email = email
+        self.ratings = []
         self.cloudRef = nil
     }
     
@@ -45,12 +54,19 @@ class Post: NSObject{
         self.photo = (snapshot?.value as? [String:Any])?["photo"] as! String
         self.lat = (snapshot?.value as? [String:Any])?["lat"] as! String
         self.lng = (snapshot?.value as? [String:Any])?["lng"] as! String
-        self.useruid = (snapshot?.value as? [String:Any])?["useruid"] as! String
-        self.email = (snapshot?.value as? [String:Any])?["email"] as! String
         self.published = (snapshot?.value as? [String:Any])?["published"] as! Bool
-        self.Rating = (snapshot?.value as? [String:Any])?["Rating"] as! Int
-        self.Rated = (snapshot?.value as? [String:Any])?["Rated"] as! Int
+        self.numRatings = (snapshot?.value as? [String:Any])?["numRatings"] as! Int
+        self.cumulativeRating = (snapshot?.value as? [String:Any])?["cumulativeRating"] as! Int
         self.creationDate = (snapshot?.value as? [String:Any])?["creationDate"] as! String
+        self.userid = (snapshot?.value as? [String:Any])?["userid"] as! String
+        self.email = (snapshot?.value as? [String:Any])?["email"] as! String
         self.cloudRef = snapshot?.key.description
+        
+        // Ratings
+        let ratings = (snapshot?.value as? [String:Any])?["ratings"]
+        self.ratings = ratings.map {
+            let ratings = $0 as! [String:Int]
+            return ratings.map({ Rating(userid: $0, rating: $1) })
+        }
     }
 }
