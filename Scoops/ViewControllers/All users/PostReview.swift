@@ -27,7 +27,7 @@ class PostReview: UIViewController {
         super.viewDidLoad()
         
         // Se indica analítica de Pantalla
-        FIRAnalytics.setScreenName(constants.PostReview, screenClass: "AllUsers")
+        FIRAnalytics.setScreenName(constants.PostReview, screenClass: constants.AllUsers)
 
         // Se deshabilitan los elementos para que no se pueda interaccionar con ellos si no se está logueado
         rateSlider.isEnabled = false
@@ -37,17 +37,26 @@ class PostReview: UIViewController {
             titleTxt.text = elementPost.title
             postTxt.text = elementPost.desc
             
-            PostModel
+            if currentUser.isAnonymous {
+                rateSlider.isHidden = true
+                slideLabel.isHidden = true
+            } else {
+                rateSlider.isHidden = false
+                slideLabel.isHidden = false
+            }
             
+            PostModel.getUserRatingPost(post: elementPost.cloudRef!, user: currentUser.uid, completion: { (rating) in
+                self.rateSlider.value = Float(rating)
+                self.rateSlider.isEnabled = true
+                self.slideLabel.text = String(Int(rating))
+            })
+            
+            imagePost.imageFromServerURL(urlString: elementPost.photo)
+            
+            if post.cumulativeRating != 0 && post.numRatings != 0 {
+                rateLabel.text = String(post.cumulativeRating / post.numRatings)
             }
         }
-        
-        // Se establece el valor de las valoraciones
-        rateSlider.value = 3
-        slideLabel.text = String(Int(rateSlider.value))
-        //rateLabel.text = String(Int(rateSlider.value))
-        rateLabel.text = String(Int(4))
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,12 +71,22 @@ class PostReview: UIViewController {
         slideLabel.text = String(Int(rateSlider.value))
         
         // En esta parte no se han indicado estadísticas ya que manda muchas
-        
     }
 
     @IBAction func ratePost(_ sender: Any) {
-        // Se indica analítica de acción
-        FIRAnalytics.logEvent(withName: "ratePost", parameters: ["posts" : "reviewposts" as NSObject])
+        
+        // Se valida si hay un post instanciado y un usuario logado
+        if let elementPost = post,
+            let currentUser = FIRAuth.auth()?.currentUser {
+            
+            // Se indica estadística de acción
+            FIRAnalytics.logEvent(withName: constants.RatePost, parameters: [constants.ActionPosts : constants.ReviewPosts as NSObject])
+            
+            // Se guarda la valoración
+            PostModel.uploadRatingUserPost(postCloudRef: elementPost.cloudRef!, userid: currentUser.uid, ratingValue: Int(rateSlider.value), completion: { (result) in
+                print(result.description)
+            })
+        }
     }
     
     //MARK: - Functions

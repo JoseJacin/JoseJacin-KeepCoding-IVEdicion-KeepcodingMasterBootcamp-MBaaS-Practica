@@ -12,7 +12,7 @@ import UIKit
 extension UIImageView {
     public func imageFromServerURL(urlString: String) {
         
-        let image = UIImage(named: "avatar.png")
+        let image = UIImage(named: constants.defaultAvatar)
         self.image = image
         
         if urlString != "" {

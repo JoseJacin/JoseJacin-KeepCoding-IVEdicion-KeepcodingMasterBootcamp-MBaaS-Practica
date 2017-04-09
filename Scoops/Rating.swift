@@ -24,5 +24,4 @@ class Rating: NSObject {
         self.userid = (snapshot?.key)! //Clave del usuario
         self.rating = snapshot?.value as! Int
     }
-    
 }

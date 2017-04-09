@@ -23,6 +23,7 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet weak var titlePostTxt: UITextField!
     @IBOutlet weak var textPostTxt: UITextField!
     @IBOutlet weak var imagePost: UIImageView!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -31,7 +32,7 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         // Do any additional setup after loading the view.
         
         // Se indica analítica de Pantalla
-        FIRAnalytics.setScreenName(constants.NewPostController, screenClass: "AuthUsers")
+        FIRAnalytics.setScreenName(constants.NewPostController, screenClass: constants.AuthUsers)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,39 +43,61 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
     //MARK: - Actions
     @IBAction func takePhoto(_ sender: Any) {
         // Se indica analítica de acción
-        FIRAnalytics.logEvent(withName: "takePhoto", parameters: ["camera" : "newPosts" as NSObject])
+        FIRAnalytics.logEvent(withName: constants.TakePhoto, parameters: [constants.ActionCamera : constants.NewPost as NSObject])
         
         self.present(pushAlertCameraLibrary(), animated: true, completion: nil)
     }
     
     @IBAction func publishAction(_ sender: Any) {
         // Se indica analítica de acción
-        FIRAnalytics.logEvent(withName: "publishAction", parameters: ["posts" : "newPosts" as NSObject])
+        FIRAnalytics.logEvent(withName: constants.PublishPostAction, parameters: [constants.ActionPosts : constants.NewPost as NSObject])
         
         isReadyToPublish = (sender as! UISwitch).isOn
     }
 
     @IBAction func savePostInCloud(_ sender: Any) {
         // Se indica analítica de acción
-        FIRAnalytics.logEvent(withName: "savePostInCloud", parameters: ["posts" : "newPosts" as NSObject])
+        FIRAnalytics.logEvent(withName: constants.SavePostInCloud, parameters: [constants.ActionPosts : constants.NewPost as NSObject])
         
-        // preparado para implementar codigo que persita en el cloud 
+        // Se instancia un nuevo Post
+        let post = Post(title: self.titlePostTxt.text!,
+                        desc: self.textPostTxt.text!,
+                        lat: "", //Todavía no se ha implementado la parte de la localicación
+                        lng: "", // Todavía no se ha implementado la parte de la localicación
+                        published: self.isReadyToPublish,
+                        userid: (FIRAuth.auth()?.currentUser?.uid.description)!, //Más adelante se enlazará con el objeto User, de momento se usar el userUid de Firebase
+                        email: (FIRAuth.auth()?.currentUser?.email)!)
+        
+        // Se instancia un objeto data para almacenar la imagen asociada
+        var data = Data.init()
+        if let image = imagePost.image,
+            let imageData = UIImagePNGRepresentation(image) {
+            data = imageData
+        }
+        
+        doneButton.isEnabled = false
+        PostModel.uploadPost(post: post, imageData: data) { (result) in
+            print(result.description)
+            self.doneButton.isEnabled = true
+            self.navigationController?.popViewController(animated: true)
+        }
+    
     }
 
     //MARK: - === Functions ===
     //MARK: Functions for Camera
     internal func pushAlertCameraLibrary() -> UIAlertController {
-        let actionSheet = UIAlertController(title: NSLocalizedString("Selecciona la fuente de la imagen", comment: ""), message: NSLocalizedString("", comment: ""), preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: NSLocalizedString(constants.PushAlertCameraActionMessage, comment: ""), message: NSLocalizedString("", comment: ""), preferredStyle: .actionSheet)
         
-        let libraryBtn = UIAlertAction(title: NSLocalizedString("Usar la libreria", comment: ""), style: .default) { (action) in
+        let libraryBtn = UIAlertAction(title: NSLocalizedString(constants.PushAlertCameraActionLibrary, comment: ""), style: .default) { (action) in
             self.takePictureFromCameraOrLibrary(.photoLibrary)
             
         }
-        let cameraBtn = UIAlertAction(title: NSLocalizedString("Usar la camara", comment: ""), style: .default) { (action) in
+        let cameraBtn = UIAlertAction(title: NSLocalizedString(constants.PushAlertCameraActionCamera, comment: ""), style: .default) { (action) in
             self.takePictureFromCameraOrLibrary(.camera)
             
         }
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: NSLocalizedString(constants.PushAlertCameraActionCancel, comment: ""), style: .cancel, handler: nil)
         
         actionSheet.addAction(libraryBtn)
         actionSheet.addAction(cameraBtn)

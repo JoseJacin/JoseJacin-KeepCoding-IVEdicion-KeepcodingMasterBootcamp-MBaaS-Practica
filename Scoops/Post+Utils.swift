@@ -22,15 +22,15 @@ class PostModel{
     
     // Función manejadora que recupera los post publicados ("published" : true)
     class func recoverPost(event: FIRDataEventType, completion: @escaping typealiases.PostsList){
-        let query = posts.queryOrdered(byChild: "published").queryEqual(toValue : true)
+        let query = posts.queryOrdered(byChild: constants.published).queryEqual(toValue : true)
         fetch(query: query, event: event) { (posts) in
             completion(posts)
         }
     }
     
     // Función manejadora que recupera los post del usuario logado ("userid" : userid)
-    class func recoverUserPost(event: FIRDataEventType, userid: String, completion: @escaping typealiases.PostsList){
-        let query = posts.queryOrdered(byChild: "userid").queryEqual(toValue : userid)
+    class func recoverUserPost(event: FIRDataEventType, userId: String, completion: @escaping typealiases.PostsList){
+        let query = posts.queryOrdered(byChild: constants.userid).queryEqual(toValue : userId)
         fetch(query: query, event: event) { (posts) in
             completion(posts)
         }
@@ -51,7 +51,6 @@ class PostModel{
                 }
             }
             
-            //TODO - ESTO LO TENDRIA QUE HACER EL BACKEND !!
             model.sort(by: { $0.creationDate > $1.creationDate })
             DispatchQueue.main.async {
                 completion(model)
@@ -60,7 +59,6 @@ class PostModel{
         }) { (error) in
             completion([])
         }
-        
     }
     
     //MARK: Save Post
@@ -80,9 +78,7 @@ class PostModel{
             DispatchQueue.main.async {
                 completion(Callbacks(done: true, message: "Post saved"))
             }
-            
         }
-        
     }
     
     //MARK: Delete Post
@@ -98,15 +94,15 @@ class PostModel{
             DispatchQueue.main.async {
                 completion(ret)
             }
-            
         })
     }
     
     //MARK: Publish Post
     // Función que publica el post
-    class func publishPost(postuid: String, completion: @escaping typealiases.OperationCallbacks){
+    class func publishPost(postId: String, completion: @escaping typealiases.OperationCallbacks){
         
-        posts.child(postuid).child("published").setValue(true)
+        //posts.child(postId).child(constants.published).setValue(true)
+        posts.child(postId).updateChildValues([constants.published:true])
         completion(Callbacks(done: true, message: "Post published"))
         
     }
@@ -116,7 +112,7 @@ class PostModel{
     // Función que recupera la valoración que el usuario logado ha realizado sobre el post
     class func getUserRatingPost(post: String, user: String, completion: @escaping (Int) -> ()){
         
-        let query = posts.child(post).child("ratings").child(user)
+        let query = posts.child(post).child(constants.ratings).child(user)
         
         query.observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -129,9 +125,7 @@ class PostModel{
                     completion(0)
                 }
             }
-            
         })
-        
     }
     
     //MARK: Save User Rating
@@ -141,7 +135,7 @@ class PostModel{
         let postFetch = posts.child(postCloudRef)
         
         let rating = ["\(userid)": ratingValue]
-        postFetch.child("ratings").updateChildValues(rating)
+        postFetch.child(constants.ratings).updateChildValues(rating)
         
         postFetch.observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -160,16 +154,14 @@ class PostModel{
                     }
                 }
                 
-                posts.child(postCloudRef).child("numRatings").setValue(post_firebase.numRatings)
-                posts.child(postCloudRef).child("cumulativeRating").setValue(post_firebase.cumulativeRating)
+                posts.child(postCloudRef).child(constants.numRatings).setValue(post_firebase.numRatings)
+                posts.child(postCloudRef).child(constants.cumulativeRating).setValue(post_firebase.cumulativeRating)
                 
                 DispatchQueue.main.async {
                     completion(Callbacks(done: true, message: "Rating saved"))
                 }
-                
             }
         })
-        
     }
     
     //MARK: - == Image ==
@@ -188,10 +180,7 @@ class PostModel{
                 if let url = metadata?.downloadURL()?.absoluteString {
                     completion(url)
                 }
-                
             }
         }
-        
     }
-    
 }
