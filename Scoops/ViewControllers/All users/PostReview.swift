@@ -32,25 +32,25 @@ class PostReview: UIViewController {
         // Se deshabilitan los elementos para que no se pueda interaccionar con ellos si no se está logueado
         rateSlider.isEnabled = false
         
-        if let elementPost = post,
-            let currentUser = FIRAuth.auth()?.currentUser {
+        if let elementPost = post {
+            
             titleTxt.text = elementPost.title
             postTxt.text = elementPost.desc
             
-            if currentUser.isAnonymous {
+            rateSlider.isHidden = false
+            slideLabel.isHidden = false
+            
+            if let currentUser = FIRAuth.auth()?.currentUser {
+                    PostModel.getUserRatingPost(post: elementPost.cloudRef!, user: currentUser.uid, completion: { (rating) in
+                        self.rateSlider.value = Float(rating)
+                        self.rateSlider.isEnabled = true
+                        self.slideLabel.text = String(Int(rating))
+                    })
+            
+            } else {
                 rateSlider.isHidden = true
                 slideLabel.isHidden = true
-            } else {
-                rateSlider.isHidden = false
-                slideLabel.isHidden = false
             }
-            
-            PostModel.getUserRatingPost(post: elementPost.cloudRef!, user: currentUser.uid, completion: { (rating) in
-                self.rateSlider.value = Float(rating)
-                self.rateSlider.isEnabled = true
-                self.slideLabel.text = String(Int(rating))
-            })
-            
             imagePost.imageFromServerURL(urlString: elementPost.photo)
             
             if post.cumulativeRating != 0 && post.numRatings != 0 {

@@ -9,6 +9,9 @@
 import Foundation
 import Firebase
 
+//MARK: - Properties
+var removeObserverValue : Bool = false
+
 // Se hace una referencia al documento Post mediante el nombre de la clase
 let posts = FIRDatabase.database().reference().child(Post.className)
 
@@ -31,6 +34,7 @@ class PostModel{
     // Función manejadora que recupera los post del usuario logado ("userid" : userid)
     class func recoverUserPost(event: FIRDataEventType, userId: String, completion: @escaping typealiases.PostsList){
         let query = posts.queryOrdered(byChild: constants.userid).queryEqual(toValue : userId)
+        
         fetch(query: query, event: event) { (posts) in
             completion(posts)
         }
@@ -40,7 +44,7 @@ class PostModel{
     private class func fetch(query: FIRDatabaseQuery, event: FIRDataEventType, completion: @escaping typealiases.PostsList){
         // Se recuperan los datos de Firebase Database
         query.observe(event, with: { (snapshot) in
-            
+
             var model: [Post] = []
             
             // Se recuperan todos los datos hijos que se encuentran
@@ -101,8 +105,8 @@ class PostModel{
     // Función que publica el post
     class func publishPost(postId: String, completion: @escaping typealiases.OperationCallbacks){
         
-        //posts.child(postId).child(constants.published).setValue(true)
-        posts.child(postId).updateChildValues([constants.published:true])
+        posts.child(postId).child(constants.published).setValue(true)
+        
         completion(Callbacks(done: true, message: "Post published"))
         
     }

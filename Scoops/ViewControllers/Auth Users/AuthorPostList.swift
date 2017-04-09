@@ -91,6 +91,8 @@ class AuthorPostList: UITableViewController {
         
         // Se añade un botón de publicar para realizar la publicación del post sin tener que entrar en la descripción del mismo
         let publish = UITableViewRowAction(style: .normal, title: constants.Publicar) { (action, indexPath) in
+            posts.removeAllObservers()
+            
             // Se realiza la publicación del post
             PostModel.publishPost(postId: post.cloudRef!, completion: { (result) in
                 print(result.description)
@@ -99,6 +101,20 @@ class AuthorPostList: UITableViewController {
                 FIRAnalytics.logEvent(withName: constants.PublishPostAction, parameters: [constants.ActionPosts : constants.AuthorPosts as NSObject])
                 
             })
+            
+            // Se recupera el usuario logado y se crean dos observers para los post del usuario y por si alguno de ellos es eliminado
+            if let userId = FIRAuth.auth()?.currentUser?.uid {
+                PostModel.recoverUserPost(event: .value, userId: userId, completion: { (posts) in
+                    self.model = posts
+                    self.tableView.reloadData()
+                })
+                PostModel.recoverUserPost(event: .childRemoved, userId: userId, completion: { (posts) in
+                    self.model = posts
+                    self.tableView.reloadData()
+                })
+            }
+            
+            
         }
         publish.backgroundColor = UIColor.green
         
