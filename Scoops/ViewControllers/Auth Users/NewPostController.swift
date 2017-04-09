@@ -21,7 +21,7 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     //MARK: - Outlets
     @IBOutlet weak var titlePostTxt: UITextField!
-    @IBOutlet weak var textPostTxt: UITextField!
+    @IBOutlet weak var textPostTxt: UITextView!
     @IBOutlet weak var imagePost: UIImageView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
@@ -30,6 +30,17 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let myColor : UIColor = UIColor( red: 204.0/255.0, green: 204.0/255.0, blue:204.0/255.0, alpha: 1.0 )
+        textPostTxt.layer.masksToBounds = true
+        textPostTxt.layer.borderColor = myColor.cgColor
+        textPostTxt.layer.borderWidth = 0.5;
+        textPostTxt.layer.cornerRadius = 5.0;
+        
+        let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
+        imagePost.layer.borderWidth = 0.5
+        imagePost.layer.borderColor = borderColor.cgColor
+        imagePost.layer.cornerRadius = 5.0
+        
         
         // Se indica analítica de Pantalla
         FIRAnalytics.setScreenName(constants.NewPostController, screenClass: constants.AuthUsers)
@@ -66,7 +77,8 @@ class NewPostController: UIViewController, UIImagePickerControllerDelegate, UINa
                         lng: "", // Todavía no se ha implementado la parte de la localicación
                         published: self.isReadyToPublish,
                         userid: (FIRAuth.auth()?.currentUser?.uid.description)!, //Más adelante se enlazará con el objeto User, de momento se usar el userUid de Firebase
-                        email: (FIRAuth.auth()?.currentUser?.email)!)
+                        email: (FIRAuth.auth()?.currentUser?.email)!,
+                        userName: (FIRAuth.auth()?.currentUser?.displayName)!)
         
         // Se instancia un objeto data para almacenar la imagen asociada
         var data = Data.init()

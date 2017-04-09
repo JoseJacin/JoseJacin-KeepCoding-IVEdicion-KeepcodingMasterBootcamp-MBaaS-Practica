@@ -22,6 +22,7 @@ class Post: NSObject{
     var creationDate: String
     var userid: String
     var email: String
+    var userName: String
     var ratings: [Rating]? // Según la documentación de Firebase, lo recomendable es realizar una correcta estrucuración de los datos
     var cloudRef: String? // En vez de FIRDatabaseReference? se utiliza como String para poder tener más libertad a la hora de manejarlo
     
@@ -32,7 +33,7 @@ class Post: NSObject{
     // https://groups.google.com/forum/#!topic/firebase-talk/EJYHxKKQ6ZA
 
     
-    init(title: String, desc: String, lat: String, lng: String, published: Bool, userid: String, email: String){
+    init(title: String, desc: String, lat: String, lng: String, published: Bool, userid: String, email: String, userName: String){
         self.title = title
         self.desc = desc
         self.photo = ""
@@ -44,6 +45,7 @@ class Post: NSObject{
         self.creationDate = Date().description
         self.userid = userid
         self.email = email
+        self.userName = userName
         self.ratings = []
         self.cloudRef = nil
     }
@@ -60,6 +62,7 @@ class Post: NSObject{
         self.creationDate = (snapshot?.value as? [String:Any])?[constants.creationDate] as! String
         self.userid = (snapshot?.value as? [String:Any])?[constants.userid] as! String
         self.email = (snapshot?.value as? [String:Any])?[constants.email] as! String
+        self.userName = (snapshot?.value as? [String:Any])?[constants.userName] as! String
         self.cloudRef = snapshot?.key.description
         
         // Ratings

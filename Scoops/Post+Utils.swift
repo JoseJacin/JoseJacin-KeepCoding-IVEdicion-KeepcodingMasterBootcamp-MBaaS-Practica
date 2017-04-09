@@ -55,6 +55,7 @@ class PostModel{
                 }
             }
             
+            //TODO: -- TODO: Implementar en el Backend con más tiempo
             model.sort(by: { $0.creationDate > $1.creationDate })
             DispatchQueue.main.async {
                 completion(model)
@@ -148,7 +149,7 @@ class PostModel{
             if snapshot.hasChildren() {
                 let post_firebase = Post.init(snapshot: snapshot)
                 
-                //TODO -- ESTO LO TENDRIA QUE HACER EL BACKEND!!!
+                //TODO: -- TODO: Implementar en el Backend con más tiempo
                 post_firebase.numRatings = 0
                 post_firebase.cumulativeRating = 0
                 if let ratings = post_firebase.ratings {

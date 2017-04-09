@@ -107,7 +107,7 @@ class MainTimeLine: UITableViewController {
  
         //cell.imageView?.imageFromServerURL(urlString: post.photo)
 
-        cell.detailTextLabel?.text = constants.RatingString + averageRating.description
+        cell.detailTextLabel?.text = post.userName + " -- " + constants.RatingString + averageRating.description
 
         return cell
     }

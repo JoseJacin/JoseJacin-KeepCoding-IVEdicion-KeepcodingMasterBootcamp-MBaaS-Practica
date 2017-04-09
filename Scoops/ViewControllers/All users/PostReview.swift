@@ -19,7 +19,7 @@ class PostReview: UIViewController {
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var slideLabel: UILabel!
     @IBOutlet weak var imagePost: UIImageView!
-    @IBOutlet weak var postTxt: UITextField!
+    @IBOutlet weak var postTxt: UITextView!
     @IBOutlet weak var titleTxt: UITextField!
     
     //MARK: - Lifecyle
@@ -31,6 +31,18 @@ class PostReview: UIViewController {
 
         // Se deshabilitan los elementos para que no se pueda interaccionar con ellos si no se está logueado
         rateSlider.isEnabled = false
+        
+        let myColor : UIColor = UIColor( red: 204.0/255.0, green: 204.0/255.0, blue:204.0/255.0, alpha: 1.0 )
+        postTxt.layer.masksToBounds = true
+        postTxt.layer.borderColor = myColor.cgColor
+        postTxt.layer.borderWidth = 0.5;
+        postTxt.layer.cornerRadius = 5.0;
+        
+        let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
+        imagePost.layer.borderWidth = 0.5
+        imagePost.layer.borderColor = borderColor.cgColor
+        imagePost.layer.cornerRadius = 5.0
+        
         
         if let elementPost = post {
             

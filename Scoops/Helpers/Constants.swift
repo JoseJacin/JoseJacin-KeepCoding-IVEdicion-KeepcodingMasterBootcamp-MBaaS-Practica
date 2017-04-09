@@ -79,6 +79,7 @@ struct constants {
     static let creationDate = "creationDate"
     static let userid = "userid"
     static let email = "email"
+    static let userName = "userName"
     static let ratings = "ratings"
     static let rating = "rating"
     
