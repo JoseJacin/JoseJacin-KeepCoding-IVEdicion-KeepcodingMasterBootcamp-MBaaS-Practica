@@ -46,6 +46,8 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
                 print("******* El mail del usuario logado es:\(user?.email ?? "")")
                 // Se obtiene la información del usuario
                 self.getUserInfo(user)
+            } else {
+                self.getUserInfo(user)
             }
         })
     }
@@ -157,20 +159,6 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
         })
     }
     
-    func reloadUI(){
-        if let currentUser = FIRAuth.auth()?.currentUser {
-            username.text = currentUser.displayName
-            
-            if let url = currentUser.photoURL {
-                userimage.imageFromServerURL(urlString: url.absoluteString)
-            }
-            
-        }else{
-            username.text = ""
-            userimage.image = nil
-        }
-    }
-    
     // Función que desloguea el usuario conectado
     fileprivate func makeLogout() {
         // Se valida si hay un usuario logado
@@ -181,10 +169,14 @@ class LoginViewController: UIViewController,GIDSignInUIDelegate {
                 try FIRAuth.auth()?.signOut()
                 // Se hace Logout de GoogleID
                 GIDSignIn.sharedInstance().signOut()
+                self.getUserInfo(nil as FIRUser!)
+
             } catch let error {
                 // Algo ha ido mal
                 print(error)
             }
+        } else {
+            self.getUserInfo(nil as FIRUser!)
         }
     }
     

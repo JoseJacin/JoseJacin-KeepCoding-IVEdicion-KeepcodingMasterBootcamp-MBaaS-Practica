@@ -79,11 +79,34 @@ class MainTimeLine: UITableViewController {
         
         var averageRating : Float = 0
         if post.cumulativeRating > 0 {
-            averageRating = Float(post.cumulativeRating) / Float(post.numRatings)
+            averageRating = Float(String(format: "%.2f", Float(post.cumulativeRating) / Float(post.numRatings)))!
         }
         
-        cell.imageView?.imageFromServerURL(urlString: post.photo)
+        // Mediante un proceso en Firebase se genera una imagen (thumbnail) con el mismo nombre que la original pero con el prefijo "thumb_".
+        // Esta imagen es de pequeña calidad para que la carga unicial sea más rápida.
+        // No se generan para todas las imagenes ya que por limitaciones de la capa gratuita de Firebase solo se pueden tratar ficheros que no ocupen demasiado.
         
+        // Se establece un "algoritmo" (lo que se me ha ocurrido viendo las horas que son) para que:
+        // Compruebe si existe o no un thumbail. En caso de existir, lo descarga en segundo plano
+        // Si no existe thumbnail, se descarga la original.
+        // Para comprobar esto correctamente, lo que he hecho ha sido crear 4 posts:
+        // 2 con un pantallazo de la pantalla del dispositivo
+        // 2 fotos tomadas con la cámara o de la galería (pero que sean fotos)
+        if post.photo != "" {
+            do {
+                let data = try getFileFrom(urlString: post.photo.replacingOccurrences(of: "/Post%2F", with: "/Post%2Fthumb_"))
+                if data != nil {
+                    cell.imageView?.imageFromServerURLThumb(urlString: post.photo.replacingOccurrences(of: "/Post%2F", with: "/Post%2Fthumb_"))
+                }
+            } catch {
+                cell.imageView?.imageFromServerURL(urlString: post.photo)
+            }
+        } else {
+            cell.imageView?.imageFromServerURL(urlString: post.photo)
+        }
+ 
+        //cell.imageView?.imageFromServerURL(urlString: post.photo)
+
         cell.detailTextLabel?.text = constants.RatingString + averageRating.description
 
         return cell

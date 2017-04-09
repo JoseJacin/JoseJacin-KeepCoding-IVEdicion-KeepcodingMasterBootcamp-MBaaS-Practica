@@ -31,4 +31,25 @@ extension UIImageView {
         
     }
     
+    public func imageFromServerURLThumb(urlString: String) {
+        
+        let image = UIImage(named: constants.defaultAvatar)
+        self.image = image
+        
+        if urlString != "" {
+            DispatchQueue.global().async {
+                do{
+                    let d = try getFileFrom(urlString: urlString)
+                    DispatchQueue.main.async {
+                        let image = UIImage(data: d)
+                        self.image = image
+                    }
+                }catch{
+
+                }
+            }
+        }
+        
+    }
+    
 }

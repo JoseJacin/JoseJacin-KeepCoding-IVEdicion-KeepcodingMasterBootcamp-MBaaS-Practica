@@ -54,7 +54,7 @@ class PostReview: UIViewController {
             imagePost.imageFromServerURL(urlString: elementPost.photo)
             
             if post.cumulativeRating != 0 && post.numRatings != 0 {
-                rateLabel.text = String(post.cumulativeRating / post.numRatings)
+                rateLabel.text = String(format: "%.2f", Float(post.cumulativeRating) / Float(post.numRatings))
             }
         }
     }
